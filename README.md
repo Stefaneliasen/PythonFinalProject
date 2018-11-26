@@ -5,4 +5,5 @@
 
 ## Project ideers
 Noget med genkendelse(eksempelvis hvordan shazam virker)
+https://willdrevo.com/fingerprinting-and-audio-recognition-with-python/
 
