@@ -7,3 +7,5 @@
 Noget med stemme genkendelse evt. i spil (eksempelvis lidt ligesom shazam virker https://willdrevo.com/fingerprinting-and-audio-recognition-with-python/)
 
 
+## Install
+* pip install SpeechRecognition
