@@ -27,7 +27,7 @@ def recognize_speech_from_mic(recognizer, microphone):
     with microphone as source:
         print('A moment of silence, please.')
         recognizer.adjust_for_ambient_noise(source)
-        print('Set minimum energy threshold to...')
+        print('Set minimum energy threshold to ' + str(recognizer.energy_threshold))
         print('Talk..')
         audio = recognizer.listen(source)
         print('Got it! Now to recognize it...')
