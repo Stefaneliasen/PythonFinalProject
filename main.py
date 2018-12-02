@@ -1,7 +1,6 @@
 import speech_recognition as sr
-
-recognizer = sr.Recognizer()
-microphone = sr.Microphone()
+import subprocess  
+import wmi
 
 def recognize_speech_from_mic(recognizer, microphone):
     """Transcribe speech from recorded from `microphone`.
@@ -27,7 +26,7 @@ def recognize_speech_from_mic(recognizer, microphone):
     with microphone as source:
         print('A moment of silence, please.')
         recognizer.adjust_for_ambient_noise(source)
-        print('Set minimum energy threshold to ' + str(recognizer.energy_threshold))
+        #print('Set minimum energy threshold to ' + str(recognizer.energy_threshold))
         print('Talk..')
         audio = recognizer.listen(source)
         print('Got it! Now to recognize it...')
@@ -54,8 +53,36 @@ def recognize_speech_from_mic(recognizer, microphone):
 
     return response
 
-guess = recognize_speech_from_mic(recognizer, microphone)
+def show_all_processes():
+    # Prints all open processes on your windows machine
+    c = wmi.WMI ()
+    for process in c.Win32_Process ():
+        print (process.ProcessId, process.Name)
 
-print('Success: ' + str(guess["success"]))
-print('error: ' + str(guess["error"]))
-print('transcription: ' + str(guess["transcription"]))
+def open_visual_studio_code():
+    # opens visual studio code, on my machine(Elias)
+    subprocess.Popen([r"C:\Users\Elias\AppData\Local\Programs\Microsoft VS Code\Code.exe"]) 
+
+# Basic needs more improvements
+def keywords_overall(x):
+    return {
+        'show': 'show_all_processes()',
+        'open': 'open_visual_studio_code()',
+    }.get(x, 'none')
+
+if __name__ == "__main__":
+    recognizer = sr.Recognizer()
+    microphone = sr.Microphone()
+
+    program_running = True
+    while program_running:
+        words_list = recognize_speech_from_mic(recognizer, microphone)
+        for word in words_list['transcription'].split():
+            result = keywords_overall(word)
+            if result != 'none':
+                exec(result)
+
+        program_running = False
+        print('*** ' + words_list['transcription'] + ' ***')
+
+    print('Done')
