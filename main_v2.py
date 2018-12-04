@@ -54,7 +54,11 @@ def recognize_speech_from_mic(recognizer, microphone):
     return response
 
 def write_if(words_list):
-    print("if " + words_list.split()[3] + ":")
+    if_statement = ""
+    words_list = words_list.split()[3:]
+    for word in words_list:
+        if_statement += " " + word
+    print("if" + if_statement + ":")
 
 def write_for(words_list):
     print('for')
@@ -97,6 +101,7 @@ def open(words_list):
                 exec(result)
 
 def keywords_overall(x):
+    tmp = None
     return {
         'write': 'write(words_list["transcription"])',
         'open': 'open(words_list["transcription"])'
@@ -106,7 +111,21 @@ if __name__ == "__main__":
     recognizer = sr.Recognizer()
     microphone = sr.Microphone()
 
-    replace_dict = {"plus": "+", "minus": "-", "multiply": "*", "divide": "/", "equals": "=", "is": "if", "underscore": "_", "colon": ":", "true": "True", "false": "False"}
+    replace_dict = {
+        "plus": "+", 
+        "minus": "-", 
+        "multiply": "*",
+        "divide": "/", 
+        "equals": "=", 
+        "is": "if", 
+        "underscore": "_", 
+        "colon": ":", 
+        "true": "True", 
+        "false": "False", 
+        "greater than": ">",
+        "is greater than": ">",
+        "if greater than": ">",
+        }
 
     program_running = True
     while program_running:
