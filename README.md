@@ -11,3 +11,4 @@
 
 ## Install
 * pip install SpeechRecognition
+* pip install wmi
