@@ -1,7 +1,7 @@
 # PythonFinalProject
 
 
-## Group: Oliver Scholz Lønning, Stefan Schou Eliasen, Elias Zinabidine Laghouila og Mathias Bertels Jensenius
+## Group: Oliver Scholz Lønning, Stefan Schou Eliasen, Elias Zinabidine Laghouila og Mathias Bartels Jensenius
 
 ## Project ideas
 # Stemme genkendelse i Visual studio code:
