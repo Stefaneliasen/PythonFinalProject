@@ -1,11 +1,12 @@
-from pynput.keyboard import Key, Controller
-import time
 import subprocess
+import os
+import time
+from pynput.keyboard import Key, Controller
 
 keyboard = Controller()
 
-import os
-
+'''
+TO DO: 
 def write_if(words_list):
     if_statement = ""
     words_list = words_list.split()[3:]
@@ -32,6 +33,7 @@ def write_keywords(x):
     return {
         'code': 'write_code(words_list)',
     }.get(x, 'none')
+'''
 
 def open_visual_studio_code():
     subprocess.Popen([os.environ['VSCODEVARIABLE'] + "\Code.exe"]) 
@@ -85,12 +87,3 @@ def write(words):
     for letter in words_to_write:
         keyboard.press(letter)
         keyboard.release(letter)
-
-def keywords_overall(x):
-    return {
-        'edit': 'commands.write(words_list["transcription"])',
-        'open': 'commands.open(words_list["transcription"])',
-        'new' : 'commands.new_file()',
-        'save' : 'commands.save_file(words_list["transcription"])',
-        'undo' : 'commands.undo()'
-    }.get(x, 'none')

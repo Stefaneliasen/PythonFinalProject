@@ -6,21 +6,33 @@ keyboard = Controller()
 def navigate(key):
     keyboard.press(key)
     keyboard.release(key)
-    time.sleep(1)
+    time.sleep(0.01)
+
+# Regular movement
+def up():
+    navigate(Key.up)
+
+def down():
+    navigate(Key.down)
+
+def left():
+    navigate(Key.left)
+
+def right():
+    navigate(Key.right)
+
+# utility 
+
+def enter():
+    navigate(Key.enter)
+
+def backspace():
+    navigate(Key.backspace)
+
+def tab():
+    navigate(Key.tab)
 
 '''
-#arrow key up
-navigate(Key.up)
-#keyboardpress enter
-navigate(Key.enter)
-#keyboardpress backspace
-navigate(Key.backspace) 
-#arrow key right
-navigate(Key.right)
-navigate(Key.left)
-navigate(Key.tab)
-navigate(Key.down) '''
-
 def marker():
     #markere tekst, start fra højre mod venstre
     keyboard.press(Key.ctrl_l)
@@ -34,10 +46,10 @@ def marker():
     
 #Copypasta
 keyboard.press(Key.ctrl_l)
-    keyboard.press('c')
+keyboard.press('c')
     
 
 
 copypasta()
-
+'''
 

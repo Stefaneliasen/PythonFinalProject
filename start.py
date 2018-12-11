@@ -1,12 +1,11 @@
 import speech_recognition as sr
 import subprocess  
 import wmi
-
-import commands
-
-from pynput.keyboard import Key, Controller
 import time
 import subprocess
+import remote
+
+from pynput.keyboard import Key, Controller
 
 keyboard = Controller()
 
@@ -73,6 +72,24 @@ if __name__ == "__main__":
     recognizer = sr.Recognizer()
     microphone = sr.Microphone()
 
+    custom_dict = {
+        "python": "py",
+        "Python": "py",
+        "lift": "left",
+        "inter": "enter",
+        "iter": "enter",
+        "ride": "right",
+        "dell": "down",
+        "Dell": "down",
+        "app": "up",
+        "App": "up",
+        "nextbase": "backspace",
+        "Nextbase": "backspace",
+        "big space": "backspace",
+        "best bass": "backspace",
+        "tap": "tab"
+    }
+
     replace_dict = {
         "plus": "+", 
         "minus": "-", 
@@ -87,9 +104,9 @@ if __name__ == "__main__":
         "is greater than": ">",
         "if greater than": ">",
         "dot": ".",
-        "python": "py",
-        "Python": "py",
+        **custom_dict
         }
+
 
     nameValidation = recognize_speech_from_mic(sr.Recognizer(), sr.Microphone(), True)
 
@@ -105,7 +122,7 @@ if __name__ == "__main__":
                 words_list['transcription'] = str(words_list['transcription']).replace(key, value)
 
             for idx, word in enumerate(words_list['transcription'].split()):
-                result = commands.keywords_overall(word)
+                result = remote.keywords_overall(word)
                 if result != 'none':
                     exec(result)
             print('***' + str(words_list['transcription']) + '***')
