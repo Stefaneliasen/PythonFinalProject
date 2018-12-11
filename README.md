@@ -13,3 +13,7 @@
 * pip install SpeechRecognition
 * pip install pyaudio
 * pip install wmi
+
+
+## Huskeliste
+* lav en oversigt over kommandoer man kan sige.
