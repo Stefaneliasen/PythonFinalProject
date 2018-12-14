@@ -78,6 +78,7 @@ if __name__ == "__main__":
         "lift": "left",
         "inter": "enter",
         "iter": "enter",
+        "into": "enter",
         "ride": "right",
         "dell": "down",
         "Dell": "down",
