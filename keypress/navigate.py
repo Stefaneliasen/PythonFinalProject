@@ -52,12 +52,12 @@ def paste():
     keyboard.release(Key.ctrl_l)
     keyboard.release('v')
 
-'''
-activate_mark()
-left()
-copy()
-right()
-enter()
-paste()
-'''
+def select_explorer():
+    keyboard.press(Key.ctrl_l)
+    keyboard.press(Key.shift)
+    keyboard.press('e')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release(Key.shift)
+    keyboard.release('e')
 
+select_explorer()

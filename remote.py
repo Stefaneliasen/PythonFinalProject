@@ -1,5 +1,5 @@
 from commands.remote_commands import write, open, new_file, save_file, undo
-from keypress.navigate import up, down, left, right, enter, backspace, tab, activate_mark, copy, paste
+from keypress.navigate import up, down, left, right, enter, backspace, tab, activate_mark, copy, paste, select_explorer
 
 def keywords_overall(x):
     return {
@@ -17,5 +17,6 @@ def keywords_overall(x):
         'tab' : 'remote.tab()',
         'mark' : 'remote.activate_mark()',
         'copy' : 'remote.copy()',
-        'paste' : 'remote.paste()'
+        'paste' : 'remote.paste()',
+        'Explorer' : 'remote.select_explorer()'
     }.get(x, 'none')
