@@ -32,24 +32,32 @@ def backspace():
 def tab():
     navigate(Key.tab)
 
-'''
-def marker():
+
+def activate_mark():
     #markere tekst, start fra højre mod venstre
     keyboard.press(Key.ctrl_l)
     keyboard.press(Key.shift_l)
-    keyboard.press(Key.left)
-    
-    keyboard.release(Key.Key.ctrl_l)
+
+def copy():
+    keyboard.release(Key.ctrl_l)   
+    keyboard.release(Key.shift_l)
+    keyboard.press(Key.ctrl_l)   
+    keyboard.press('c')
+    keyboard.release('c')
+    keyboard.release(Key.ctrl_l)
+
+def paste():
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('v')
+    keyboard.release(Key.ctrl_l)
+    keyboard.release('v')
+
+def select_explorer():
+    keyboard.press(Key.ctrl_l)
+    keyboard.press(Key.shift)
+    keyboard.press('e')
+    keyboard.release(Key.ctrl_l)
     keyboard.release(Key.shift)
-    keyboard.release(Key.left)
-    
-    
-#Copypasta
-keyboard.press(Key.ctrl_l)
-keyboard.press('c')
-    
+    keyboard.release('e')
 
-
-copypasta()
-'''
-
+select_explorer()
