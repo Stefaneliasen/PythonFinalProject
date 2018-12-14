@@ -6,11 +6,11 @@ import subprocess
 import remote
 
 from pynput.keyboard import Key, Controller
+from whitelist import full_replace_dict
 
 keyboard = Controller()
-
-
-def recognize_speech_from_mic(recognizer, microphone, flag=False):
+    
+def recognize_speech_from_mic(recognizer, microphone, intro=False):
     """Transcribe speech from recorded from `microphone`.
 
     Returns a dictionary with three keys:
@@ -22,6 +22,14 @@ def recognize_speech_from_mic(recognizer, microphone, flag=False):
     "transcription": `None` if speech could not be transcribed,
                otherwise a string containing the transcribed text
     """
+
+    # set up the response object
+    response = {
+        "success": True,
+        "error": None,
+        "transcription": None
+    }
+
     # check that recognizer and microphone arguments are appropriate type
     if not isinstance(recognizer, sr.Recognizer):
         raise TypeError("`recognizer` must be `Recognizer` instance")
@@ -31,27 +39,19 @@ def recognize_speech_from_mic(recognizer, microphone, flag=False):
 
     # adjust the recognizer sensitivity to ambient noise and record audio
     # from the microphone
-    if(flag):
+    if(intro):
         with microphone as source:
-            print('Welcome to our python speech recognition project!')
-            recognizer.adjust_for_ambient_noise(source)
-            print("Please tell me your name")
+            print('-----------------------------------------------------')
+            print('| Welcome to our python speech recognition project! |')
+            print('-----------------------------------------------------\n')
+            recognizer.adjust_for_ambient_noise(source, 0.5)
+            print("\U0001f916  : Please tell me your name?")
             audio = recognizer.listen(source)
-            print("Got it! please give me a moment to validate...")
     else:
         with microphone as source:
-            print('A moment of silence, please.')
-            recognizer.adjust_for_ambient_noise(source)
-            print('Talk..')
+            recognizer.adjust_for_ambient_noise(source, 0.5)
+            print('\U0001f916  : Please tell me something do to')
             audio = recognizer.listen(source)
-            print("Validating input...")
-
-    # set up the response object
-    response = {
-        "success": True,
-        "error": None,
-        "transcription": None
-    }
 
     # try recognizing the speech in the recording
     # if a RequestError or UnknownValueError exception is caught,
@@ -68,63 +68,43 @@ def recognize_speech_from_mic(recognizer, microphone, flag=False):
 
     return response
 
+def pickMicrophone():
+    print("Please tell me what microphone you would like to use: ")
+    print("------------------------------------------------------")
+    for idx, option in enumerate(sr.Microphone.list_microphone_names()):
+        print(str(idx) + ": " + option)
+    print("------------------------------------------------------")
+    result = input("Please enter a number: ")
+    print("\n")
+    if(int(result) > len(sr.Microphone.list_microphone_names())):
+        pickMicrophone()
+    else:
+        print("You have chosen option number: " + result + "\n")
+        return sr.Microphone(device_index=int(result))
+
+
 if __name__ == "__main__":
     recognizer = sr.Recognizer()
-    microphone = sr.Microphone()
-
-    custom_dict = {
-        "python": "py",
-        "Python": "py",
-        "lift": "left",
-        "inter": "enter",
-        "iter": "enter",
-        "ride": "right",
-        "dell": "down",
-        "Dell": "down",
-        "app": "up",
-        "App": "up",
-        "nextbase": "backspace",
-        "Nextbase": "backspace",
-        "big space": "backspace",
-        "best bass": "backspace",
-        "tap": "tab"
-    }
-
-    replace_dict = {
-        "plus": "+", 
-        "minus": "-", 
-        "multiply": "*",
-        "divide": "/", 
-        "equals": "=", 
-        "underscore": "_", 
-        "colon": ":", 
-        "true": "True", 
-        "false": "False", 
-        "greater than": ">",
-        "is greater than": ">",
-        "if greater than": ">",
-        "dot": ".",
-        **custom_dict
-        }
-
-
+    microphone = pickMicrophone()
     nameValidation = recognize_speech_from_mic(sr.Recognizer(), sr.Microphone(), True)
 
-    print('Welcome ' + str(nameValidation['transcription']) + ". Lets begin!")
+    print('\U0001f916  : Welcome ' + str(nameValidation['transcription']) + ".")
 
     program_running = True
     while program_running:
         words_list = recognize_speech_from_mic(recognizer, microphone)
         if(str(words_list['transcription']) == 'None'):
-            print("You did not say anything. Please tell me what to do")
+            print("Hello")
         else:
-            for key, value in replace_dict.items():
+            for key, value in full_replace_dict.items():
                 words_list['transcription'] = str(words_list['transcription']).replace(key, value)
 
             for idx, word in enumerate(words_list['transcription'].split()):
                 result = remote.keywords_overall(word)
                 if result != 'none':
                     exec(result)
-            print('***' + str(words_list['transcription']) + '***')
-    
-    print('Done')
+            print('\U0001f916  : ' + str(words_list['transcription']))
+
+    print("------------")
+    print('| Goodbye! |')
+    print("------------")
