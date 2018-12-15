@@ -49,7 +49,7 @@ def recognize_speech_from_mic(recognizer, microphone, intro=False):
             audio = recognizer.listen(source)
     else:
         with microphone as source:
-            recognizer.adjust_for_ambient_noise(source, 0.5)
+            recognizer.adjust_for_ambient_noise(source)
             print('\U0001f916  : Please tell me something do to')
             audio = recognizer.listen(source)
 
