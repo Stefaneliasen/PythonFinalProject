@@ -60,4 +60,25 @@ def select_explorer():
     keyboard.release(Key.shift)
     keyboard.release('e')
 
-select_explorer()
+# run code, need extension installed(Code Runner)
+def runcode():
+    keyboard.press(Key.ctrl_l)
+    keyboard.press(Key.alt_l)
+    keyboard.press('n')
+
+    keyboard.release(Key.ctrl_l)
+    keyboard.release(Key.alt_l)
+    keyboard.release('n')
+
+#move current line up or down.
+def moveline(key):
+    keyboard.press(Key.alt_l)
+    keyboard.press(key)
+    keyboard.release(Key.alt_l)
+    keyboard.release(key)
+
+def moveline_up():
+    moveline(Key.up)
+    
+def moveline_down():
+    moveline(Key.down)

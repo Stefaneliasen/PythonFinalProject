@@ -13,6 +13,7 @@ custom_dict = {
     "Nextbase": "backspace",
     "big space": "backspace",
     "best bass": "backspace",
+    "bass": "base",
     "tap": "tab"
     }
 
