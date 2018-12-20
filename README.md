@@ -1,9 +1,7 @@
 # PythonFinalProject
 
-
 ## Group: Oliver Scholz Lønning, Stefan Schou Eliasen, Elias Zinabidine Laghouila og Mathias Bartels Jensenius
 
-## Project ideas
 # Stemme genkendelse i Visual studio code:
 * Åbne Visual studio code med stemmen
 * Skrive den kode man siger
