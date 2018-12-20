@@ -14,6 +14,7 @@
 
 
 ## How to run program
+* Clone project
 * Have all dependecies installed
 * python start.py in commandprompt
 
