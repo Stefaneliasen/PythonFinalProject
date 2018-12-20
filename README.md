@@ -15,7 +15,7 @@
 
 ## How to run program
 * Have all dependecies installed
-* Type in commando prompt: Python start.py
+* python start.py in commandprompt
 
 ## Commands
 Everything is supposed for Visual Studio Code, some might work in word etc.
