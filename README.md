@@ -6,7 +6,7 @@
 * Åbne Visual studio code med stemmen
 * Skrive den kode man siger
 
-## compatibility
+## Compatibility
 * We know it works in windows 10
 * Can't test in Linux or Mac
 
