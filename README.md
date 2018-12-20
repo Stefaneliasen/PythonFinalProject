@@ -15,8 +15,9 @@
 * pip install wmi
 
 
-## Huskeliste
-* lav en oversigt over kommandoer man kan sige.
+## How to run program
+* Have all dependecies installed
+* Type in commando prompt: Python start.py
 
 ## Commands
 Everything is supposed for Visual Studio Code, some might work in word etc.
